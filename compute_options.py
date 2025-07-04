@@ -43,3 +43,17 @@ def compute_all_european_put_prices(n: int, all_put_payoffs: list[list[float]], 
                 put_prices.append(price)
             all_put_prices[i] = put_prices
     return all_put_prices
+
+def compute_all_american_put_prices(n: int, all_put_payoffs: list[list[float]], q: float):
+    all_put_prices = [[]] * (n+1)
+    for r_i in range(n + 1):
+        i = n - r_i
+        if i == n: # if at the last step, the prices are the payoffs (arbitrage-free pricing)
+            all_put_prices[i] = all_put_payoffs[i]
+        else:
+            put_prices = []
+            for j in range(i + 1):
+                price = (q * all_put_prices[i + 1][j + 1]) + (1-q) * all_put_prices[i + 1][j]
+                put_prices.append(max(price, all_put_payoffs[i][j]))
+            all_put_prices[i] = put_prices
+    return all_put_prices

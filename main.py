@@ -1,6 +1,7 @@
 import math
 from compute_stock import compute_all_stock_prices
-from compute_options import compute_all_call_payoffs, compute_all_call_prices
+from compute_options import compute_all_call_payoffs, compute_all_call_prices, compute_all_american_put_prices, compute_all_european_put_prices, compute_all_put_payoffs
+from lib.out import print_prices
 
 T = 0.25
 s0 = 100
@@ -19,9 +20,12 @@ u, d = compute_u_and_d()
 q = (math.exp((r - c) * T / n) - d) / (u - d)
 
 stock_prices = compute_all_stock_prices(s0=s0, u=u, d=d, n=n)
+
 all_call_payoffs = compute_all_call_payoffs(K=K, n=n, stock_prices=stock_prices)
 all_call_prices = compute_all_call_prices(q=q, n=n, all_call_payoffs=all_call_payoffs)
-for i in all_call_prices:
-    for j in i:
-        print(f"{j:.2f}", end=" ")
-    print()
+
+all_put_payoffs = compute_all_put_payoffs(K=K, n=n, stock_prices=stock_prices)
+all_european_put_prices = compute_all_european_put_prices(q=q, n=n, all_put_payoffs=all_put_payoffs)
+all_ameircan_put_prices = compute_all_american_put_prices(q=q, n=n, all_put_payoffs=all_put_payoffs)
+
+print_prices(all_european_put_prices)
