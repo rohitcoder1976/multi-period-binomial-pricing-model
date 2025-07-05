@@ -51,8 +51,6 @@ def compute_all_american_call_prices(n: int, all_call_payoffs: list[list[float]]
                     price = ((q * all_call_prices[i + 1][j + 1]) + (1-q) * all_call_prices[i + 1][j])
                 
                 call_prices.append(max(price, all_call_payoffs[i][j]))
-                if all_call_payoffs[i][j] > price:
-                    print("Optimal to exercise early in period: " + str(i))
             all_call_prices[i] = call_prices
     return all_call_prices
 
@@ -81,7 +79,5 @@ def compute_all_american_put_prices(n: int, all_put_payoffs: list[list[float]], 
             for j in range(i + 1):
                 price = (math.exp(-r * T / n)) * ((q * all_put_prices[i + 1][j + 1]) + (1-q) * all_put_prices[i + 1][j])
                 put_prices.append(max(price, all_put_payoffs[i][j]))
-                # if all_put_payoffs[i][j] > price:
-                #     print("Optimal to exercise early in period: " + str(i))
             all_put_prices[i] = put_prices
     return all_put_prices
