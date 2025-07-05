@@ -6,6 +6,12 @@ This project does not use any sophisticated libraries such as NumPy for computat
 
 This project also uses more of a continuous Black-Scholes method in calculating prices (as evidenced by the computations of discounts and up-and-down factors `u` and `d`) rather than a strcictly discrete binomial method.
 
+## Intended Use and Citation
+
+> ⚠️ Note: This software is intended primarily for academic and research purposes.
+> While you are free to use it for any purpose under the MIT License, please cite appropriately if used in academic work.
+> Suggested citation: Rohit Marath, "Multi-Period Binomial Pricing Model," 2025.
+
 ## Getting Started
 
 - Since this project does not use any external python libraries, a virtual environment is not needed.
@@ -13,21 +19,21 @@ This project also uses more of a continuous Black-Scholes method in calculating 
 - Make sure you have python installed by running one of the following:
 
 ```
-    python --version
+python --version
 ```
 
 ```
-    python3 --version
+python3 --version
 ```
 
 - While in the root directory of the project, run the project using one of the following:
 
 ```
-    python main.py
+python main.py
 ```
 
 ```
-    python3 main.py
+python3 main.py
 ```
 
 ## Calibration
